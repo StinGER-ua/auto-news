@@ -70,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "auto_news.wsgi.application"
 
+AUTH_USER_MODEL = "agency.Redactor"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
