@@ -98,3 +98,9 @@ class ArticleCreateView(LoginRequiredMixin, generic.CreateView):
     model = Article
     form_class = ArticleForm
     success_url = reverse_lazy("agency:article-list")
+
+
+class ArticleUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Article
+    form_class = ArticleForm
+    success_url = reverse_lazy("agency:article-list")

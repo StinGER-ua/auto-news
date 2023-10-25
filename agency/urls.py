@@ -7,6 +7,7 @@ from agency.views import (
     ArticleListView,
     ArticleDetailView,
     ArticleCreateView,
+    ArticleUpdateView,
 )
 
 urlpatterns = [
@@ -25,6 +26,12 @@ urlpatterns = [
         "articles/create/",
         ArticleCreateView.as_view(),
         name="article-create"
+    ),
+
+    path(
+        "articles/<int:pk>/update",
+        ArticleUpdateView.as_view(),
+        name="article-update"
     ),
 ]
 
