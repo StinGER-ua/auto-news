@@ -82,3 +82,7 @@ class ArticleListView(LoginRequiredMixin, generic.ListView):
         if form.is_valid():
             return queryset.filter(title__icontains=form.cleaned_data["title"])
         return queryset
+
+
+class ArticleDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Article
