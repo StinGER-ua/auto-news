@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <section class="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="banner-title regular-title">
+            Articles
+          </h1>
+        </div>
+      </div>
+    </div>
+    {% load static %}
+  </section>
+  <section class="table-lisot dyn-content">
+    {% if article_list %}
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <form action="" method="get" class="form-inline">
+                {{ search_form|crispy }}
+                <input class="btn btn-primary" type="submit" value="🔍">
+                <a href="{% url 'agency:article-create' %}" class="btn btn-primary link-to-page">
+                  Add New Article
+                </a>
+              </form>
+            </div>
+            <table class="table table-borderless">
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Topic</th>
+                </tr>
+              {% for article in article_list %}
+                <tr>
+                  <td>
+                    {{ article.id }}
+                  </td>
+                  <td>
+                    <a href="{{ article.get_absolute_url }}">
+                      {{ article.title }}
+                    </a>
+                  </td>
+                  <td>
+                    {{ article.topic.name }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <h5 class="no-data">There are no articles yet</h5>
+    {% endif %}
+  </section>
+
+{% endblock %}
