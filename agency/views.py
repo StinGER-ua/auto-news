@@ -1,9 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
-from agency.forms import TopicSearchForm, RedactorSearchForm, ArticleSearchForm
+from agency.forms import (
+    TopicSearchForm,
+    RedactorSearchForm,
+    ArticleSearchForm,
+    ArticleForm,
+)
 from agency.models import Redactor, Article, Topic
 
 
@@ -86,3 +92,9 @@ class ArticleListView(LoginRequiredMixin, generic.ListView):
 
 class ArticleDetailView(LoginRequiredMixin, generic.DetailView):
     model = Article
+
+
+class ArticleCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Article
+    form_class = ArticleForm
+    success_url = reverse_lazy("agency:article-list")
