@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <section class="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="banner-title regular-title">
+            Topics
+          </h1>
+        </div>
+      </div>
+    </div>
+    {% load static %}
+  </section>
+  <section class="table-list dyn-content">
+    {% if topic_list %}
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <form action="" method="get" class="form-inline">
+                {{ search_form|crispy }}
+                <input class="btn btn-primary" type="submit" value="🔍">
+                <a href="{% url 'agency:topic-create' %}" class="btn btn-primary link-to-page">
+                  Add New Topic
+                </a>
+              </form>
+            </div>
+            <table class="table table-borderless">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+              {% for topic in topic_list %}
+              <tr>
+                <td>
+                  {{ topic.id }}
+                </td>
+                <td>
+                  <a href="{% url 'agency:article-topic' topic=topic.name %}">
+                    {{ topic.name }}
+                  </a>
+                </td>
+                <td>
+                  <a href="{% url 'agency:topic-update' pk=topic.id %}">
+                    Edit
+                  </a>
+                </td>
+                <td>
+                  <a class="a-delete" href="{% url 'agency:topic-delete' pk=topic.id %}">
+                    Delete
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="container">
+        <h5 class="no-data">There are no topics</h5>
+        <hr>
+        <div>
+          <form action="" method="get" class="form-inline">
+            <a href="{% url 'agency:topic-create' %}" class="btn btn-primary link-to-page">
+              Add New Topic
+            </a>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+
+{% endblock %}
