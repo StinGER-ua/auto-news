@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="banner with-padding  mx-auto">
+    <div class="container">
+      <div class="row">
+        <div class="text-center">
+          <h1 class="banner-title">StinGEaR Auto News</h1>
+          <p class="narrow-text">Welcome to StinGEaR, your go-to news portal for cutting-edge updates and in-depth analyses on the ever-evolving automotive landscape. We take you on a journey through the latest trends, innovations, and breakthroughs in the automotive industry, offering a comprehensive view of what drives tomorrow's roads. Join over 1.6 million developers around the world. </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dyn-content with-padding">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <h4>
+            <a href="{% url 'agency:article-list' %}">
+              {{ num_articles }}+<br>Articles
+            </a>
+          </h4>
+          <p>Jump straight into reading</p>
+        </div>
+
+        <div class="col-md-4">
+          <h4>
+            <a href="{% url 'agency:redactor-list' %}">
+              {{ num_redactors }}+<br>Redactors
+            </a>
+          </h4>
+          <p>They all said hello</p>
+        </div>
+
+        <div class="col-md-4">
+          <h4>
+            <a href="{% url 'agency:topic-list' %}">
+              {{ num_topics }}+<br>Topics
+            </a>
+          </h4>
+          <p>What is this all about</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
