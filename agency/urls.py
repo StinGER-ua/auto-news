@@ -8,6 +8,7 @@ from agency.views import (
     ArticleDetailView,
     ArticleCreateView,
     ArticleUpdateView,
+    ArticleDeleteView,
 )
 
 urlpatterns = [
@@ -33,6 +34,13 @@ urlpatterns = [
         ArticleUpdateView.as_view(),
         name="article-update"
     ),
+
+    path(
+        "articles/<int:pk>/delete",
+        ArticleDeleteView.as_view(),
+        name="article-delete"
+    ),
+
 ]
 
 app_name = "agency"
