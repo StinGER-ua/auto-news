@@ -26,6 +26,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     context_object_name = "topic_list"
     template_name = "agency/topic_list.html"
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         contex = super(TopicListView, self).get_context_data(**kwargs)
@@ -34,8 +35,14 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
         return contex
 
     def get_queryset(self):
-        queryset = Topic.objects.all()
+        queryset = Topic.objects.all().order_by("id")
         form = TopicSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(name__icontains=form.cleaned_data["name"])
         return queryset
+
+
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    model = Redactor
+    template_name = "agency/redactor_list.html"
+    paginate_by = 5
