@@ -17,3 +17,12 @@ class RedactorSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )
+
+
+class ArticleSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=127,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
+    )
